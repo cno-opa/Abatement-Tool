@@ -6,7 +6,8 @@
 #Need to have an automated way to update the data so it works with this code
 #The single most heavily weighted thing is the question about character, which is more subjective than other things and Pura's judgment may be very different than the reviewers on that one
 #everything is linear, a downside of not using regression analysis
-abatement.data = read.csv(file="C:\\Users\\djknaggs\\Desktop\\Abatement Review Data for Analysis for MF.csv", na.strings = "N/A")
+
+abatement.data = read.csv(file="data.csv", na.strings = "N/A")
 structures = abatement.data[which(abatement.data$Vacant.Lot.Code==0|is.na(abatement.data$Vacant.Lot.Code)),]
 attach(structures)
 str.mat = as.matrix(cbind(MVA.Code,Market.Code,Review,Character.Code,Roof.Code,Exterior.Code,Foundation.Code,Overall.Condition.Code,Recommendation.Code))
@@ -29,7 +30,7 @@ projection = c()
 for(i in 1:length(scores)){
 	if(scores[i]>threshhold){projection[i] = "Demolish"}
 	else{projection[i] = "Sell"}
-}	
+}
 validity = sum(projection==recommendation)/length(projection==recommendation)
 
 #make weights based on correlations
@@ -98,6 +99,3 @@ for(i in 1:length(final.scores)){
 validity.rating = sum(projection==recommendation)/length(projection==recommendation)
 wrong = which(projection!=recommendation)
 projection[wrong]
-
-
-
