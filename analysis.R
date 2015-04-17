@@ -5,7 +5,7 @@
 #need to make it more dynamic (is there a better way than just updating the correlations?)
 #Need to have an automated way to update the data so it works with this code
 #The single most heavily weighted thing is the question about character, which is more subjective than other things and Pura's judgment may be very different than the reviewers on that one
-#everything is linear, a downside of not using regression analysis
+#everything is linear, a downside of not using regression analysis.
 
 abatement.data = read.csv(file="data.csv", na.strings = "N/A")
 structures = abatement.data[which(abatement.data$Vacant.Lot.Code==0|is.na(abatement.data$Vacant.Lot.Code)),]
